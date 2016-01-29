@@ -13,11 +13,11 @@ public class SnakeBody {
     }
   }
   void move(float distX, float distY, float distZ) {
-    segments.remove(segments.size()-1);
+    segments.add(0, new SnakeBit(segments.get(0).x + (distX * size), segments.get(0).y + (distY * size), segments.get(0).z + (distZ * size), size));
     for (int i = 0; i < segments.size(); i++) {
       segments.get(i).move(distX * size, distY * size, distZ * size);
     }
-    segments.add(new SnakeBit(segments.get(0).x + (distX + size), segments.get(0).y + (distY * size), segments.get(0).z + (distZ * size), size));
+    segments.remove(segments.size()-1);
   }
 
   void display() {
