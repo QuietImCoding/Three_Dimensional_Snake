@@ -8,6 +8,12 @@ public class Apple {
    this.size = size;
  }
  
+ void move(float x, float y, float z) {
+   this.x = x;
+   this.y = y;
+   this.z = z;
+ }
+ 
  void display() {
    fill(255,0,0);
    pushMatrix();
