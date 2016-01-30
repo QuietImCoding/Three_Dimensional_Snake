@@ -16,7 +16,8 @@ public class SnakeBit {
   }
 
   void display() {
-    fill(0, 0, 245);
+    stroke(0);
+    fill(0,235, 0);
     pushMatrix();
     translate(x, y, z);
     box(bitSize);

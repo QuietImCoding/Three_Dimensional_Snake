@@ -27,13 +27,15 @@ void draw() {
     }
   }
   if (mode == 2) {
+    camera(width/2, height/2, height/2/tan(PI/6) + 200, width/2, height/2, 0, 0, 1, 0);
     lights();
     checkKeys();
-    if (frameCount%6==0) {
+    //if (frameCount%3==0) {
       textSize(15);
       text(s.segments.size(), 15, 15);
-      //rotateX(PI/6);
+      rotateX(PI/6);
       background(0);
+      drawGrid();
       s.move(dx, dy, dz);
       s.display();
       if (s.ate(a)) {
@@ -41,16 +43,17 @@ void draw() {
         s.grow();
       }
       a.display();
-    }
+    //}
     if (!inBounds()) {
       mode = 3;
+      background(0);
     }
     if (s.isDead) {
       mode = 3;
     }
   }
   if (mode == 3) {
-    //background(0);
+    background(0);
     fill(255, 0, 0);
     textSize(width/8);
     textAlign(CENTER, CENTER);
@@ -72,6 +75,21 @@ void draw() {
 
 boolean inBounds() {
   return s.getPosition()[0] - 20 >= 0 && s.getPosition()[0] + 20<= width && s.getPosition()[1] -20 >= 0 && s.getPosition()[1] +20 <= height;
+}
+
+void drawGrid() {
+  stroke(255,5);
+  noFill();
+  for (int x = 0; x < height; x+=20) {
+    for (int y = 0; y < height; y+=20) {
+      for (int z = -60; z <= 60; z+=20) {
+        pushMatrix();
+        translate(x,y,z);
+        box(20);
+        popMatrix();
+      }
+    }
+  }
 }
 
 void checkKeys() {
